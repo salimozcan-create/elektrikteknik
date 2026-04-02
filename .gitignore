@@ -1,0 +1,15 @@
+# Bağımlılıklar (KESİNLİKLE YÜKLENMEMELİ!)
+node_modules/
+.next/
+
+# Ortam değişkenleri
+.env.local
+.env.production
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
+
+# Loglar
+*.log
+npm-debug.log*

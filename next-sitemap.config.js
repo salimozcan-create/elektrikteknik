@@ -1,10 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://elektrikteknik.com.tr',
+  siteUrl: 'https://www.elektrikteknik.com',
   generateRobotsTxt: true,
-  sitemapSize: 7000,
-  changefreq: 'daily',
-  priority: 0.7,
   robotsTxtOptions: {
     policies: [
       {
@@ -12,15 +9,27 @@ module.exports = {
         allow: '/',
       },
     ],
-    additionalSitemaps: [
-      'https://elektrikteknik.com.tr/sitemap.xml',
-    ],
   },
+  sitemapSize: 5000,
+  changefreq: 'daily',
+  priority: 0.7,
+  exclude: ['/admin/*', '/dashboard/*'],
   transform: async (config, path) => {
+    // Her sayfa için öncelik ve sıklık ayarı
+    const priorities = {
+      '/': 1.0,
+      '/elektrik-usta': 0.9,
+      '/elektrik-urun': 0.8,
+      '/gunes-enerji': 0.8,
+      '/guvenlik': 0.8,
+      '/hakkimizda': 0.6,
+      '/iletisim': 0.6,
+    }
+    
     return {
       loc: path,
       changefreq: config.changefreq,
-      priority: config.priority,
+      priority: priorities[path] || config.priority,
       lastmod: new Date().toISOString(),
     }
   },

@@ -6,7 +6,7 @@ export default function Schema() {
     "name": "Elektrik Teknik",
     "alternateName": "Elektrik Teknik Elektrikçi Hizmetleri",
     "description": "İstanbul'da 7/24 acil elektrik tamir, arıza giderme, sigorta değişimi, priz montajı, elektrik tesisatı ve güneş enerji sistemleri hizmetleri.",
-    "url": "https://www.elektrikteknik.com",
+    "url": "https://elektrikteknik.com",
     "telephone": "+905327180613",
     "email": "info@elektrikteknik.com",
     "address": {
@@ -30,7 +30,15 @@ export default function Schema() {
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
         "opens": "00:00",
         "closes": "23:59"
       }
@@ -39,17 +47,10 @@ export default function Schema() {
       "https://www.instagram.com/elektrikteknik",
       "https://www.facebook.com/elektrikteknik",
       "https://wa.me/905327180613"
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "247",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
+    ]
   }
 
-  // Hizmetler Şeması (Service)
+  // Hizmetler Şeması
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -61,8 +62,7 @@ export default function Schema() {
         "item": {
           "@type": "Service",
           "name": "Acil Elektrik Arıza",
-          "description": "7/24 acil elektrik arıza giderme ve tamir hizmeti",
-          "provider": { "@type": "LocalBusiness", "name": "Elektrik Teknik" }
+          "description": "7/24 acil elektrik arıza giderme ve tamir hizmeti"
         }
       },
       {
@@ -71,8 +71,7 @@ export default function Schema() {
         "item": {
           "@type": "Service",
           "name": "Sigorta Değişimi",
-          "description": "Otomat sigorta ve kaçak akım rölesi değişimi",
-          "provider": { "@type": "LocalBusiness", "name": "Elektrik Teknik" }
+          "description": "Otomat sigorta ve kaçak akım rölesi değişimi"
         }
       },
       {
@@ -81,8 +80,7 @@ export default function Schema() {
         "item": {
           "@type": "Service",
           "name": "Priz ve Anahtar Değişimi",
-          "description": "Priz, anahtar ve tesisat elemanlarının değişimi",
-          "provider": { "@type": "LocalBusiness", "name": "Elektrik Teknik" }
+          "description": "Priz, anahtar ve tesisat elemanlarının değişimi"
         }
       },
       {
@@ -91,8 +89,7 @@ export default function Schema() {
         "item": {
           "@type": "Service",
           "name": "Elektrik Tesisatı",
-          "description": "Bina, ev ve işyeri elektrik tesisatı yenileme",
-          "provider": { "@type": "LocalBusiness", "name": "Elektrik Teknik" }
+          "description": "Bina, ev ve işyeri elektrik tesisatı yenileme"
         }
       },
       {
@@ -101,8 +98,7 @@ export default function Schema() {
         "item": {
           "@type": "Service",
           "name": "Güneş Enerji Sistemleri",
-          "description": "Güneş paneli kurulumu ve enerji sistemleri",
-          "provider": { "@type": "LocalBusiness", "name": "Elektrik Teknik" }
+          "description": "Güneş paneli kurulumu ve enerji sistemleri"
         }
       },
       {
@@ -111,14 +107,13 @@ export default function Schema() {
         "item": {
           "@type": "Service",
           "name": "Güvenlik Kamera Sistemleri",
-          "description": "CCTV, alarm ve akıllı ev sistemleri kurulumu",
-          "provider": { "@type": "LocalBusiness", "name": "Elektrik Teknik" }
+          "description": "CCTV, alarm ve akıllı ev sistemleri kurulumu"
         }
       }
     ]
   }
 
-  // Soru-Cevap Şeması (FAQ - Sık Sorulan Sorular için)
+  // FAQ Şeması
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -144,7 +139,7 @@ export default function Schema() {
         "name": "7/24 hizmet veriyor musunuz?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Evet, haftanın 7 günü 24 saat acil elektrik tamir ve arıza hizmeti veriyoruz. Gece, gündüz, resmi tatil fark etmez."
+          "text": "Evet, haftanın 7 günü 24 saat acil elektrik tamir ve arıza hizmeti veriyoruz."
         }
       },
       {
@@ -163,12 +158,7 @@ export default function Schema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Elektrik Teknik",
-    "url": "https://www.elektrikteknik.com",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://www.elektrikteknik.com/arama?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "url": "https://elektrikteknik.com"
   }
 
   return (

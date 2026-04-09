@@ -18,109 +18,158 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed">
-              İstanbul Sultanbeyli'de profesyonel elektrik hizmetleri. 7/24 acil servis, tamir, bakım ve güneş enerji sistemleri.
+              İstanbul Sultanbeyli'de profesyonel elektrik hizmetleri. 7/24 acil servis, tamir, bakım, 
+              güneş enerji sistemleri, güvenlik kamera ve elektrik ürünleri satışı.
             </p>
           </div>
 
-          {/* Hızlı Bağlantılar - Sadece 4 Madde */}
+          {/* Hizmetlerimiz */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Hızlı Bağlantılar</h3>
+            <h3 className="text-lg font-bold mb-4">Hizmetlerimiz</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/elektrik-usta" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  Elektrik Usta
-                </Link>
-              </li>
-              <li>
-                <Link href="/elektrik-urun" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  Elektrik Ürün
+                  Elektrik Usta (Tamir & Bakım)
                 </Link>
               </li>
               <li>
                 <Link href="/gunes-enerji" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  Güneş Enerji
+                  Güneş Enerji Sistemleri
                 </Link>
               </li>
               <li>
                 <Link href="/guvenlik" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  Güvenlik
+                  Güvenlik & Kamera Sistemleri
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* İletişim - Orta Sağ */}
+          {/* Elektrik Ürünleri */}
           <div>
-            <h3 className="text-lg font-bold mb-4">İletişim</h3>
-            <ul className="space-y-3 text-gray-400">
-              <li className="flex items-center gap-3">
-                <span className="text-blue-400 text-xl">📞</span>
+            <h3 className="text-lg font-bold mb-4">Elektrik Ürünleri</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/elektrik-urun" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  Tüm Ürünler
+                </Link>
+              </li>
+              <li>
+                <Link href="/elektrik-urun/prizler" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  Prizler
+                </Link>
+              </li>
+              <li>
+                <Link href="/elektrik-urun/ampuller" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  Ampuller
+                </Link>
+              </li>
+              <li>
+                <Link href="/elektrik-urun/projektorler" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  Projektörler
+                </Link>
+              </li>
+              <li>
+                <Link href="/elektrik-urun/kacak-akim-rolesi" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  Kaçak Akım Rölesi
+                </Link>
+              </li>
+              <li>
+                <Link href="/elektrik-urun/led-paneller" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  LED Paneller
+                </Link>
+              </li>
+              <li>
+                <Link href="/elektrik-urun/avizeler" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  Avizeler
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* İletişim & Kurumsal */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">İletişim & Kurumsal</h3>
+            <ul className="space-y-2 mb-6">
+              <li>
+                <Link href="/hakkimizda" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  Hakkımızda
+                </Link>
+              </li>
+              <li>
+                <Link href="/iletisim" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  İletişim
+                </Link>
+              </li>
+              <li>
+                <Link href="/site-haritasi" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  Site Haritası
+                </Link>
+              </li>
+            </ul>
+
+            <div className="space-y-2 text-gray-400">
+              <div className="flex items-center gap-2">
+                <span>📞</span>
                 <a href="tel:+905327180613" className="hover:text-white transition-colors">
                   0 (532) 718 06 13
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="text-green-400 text-xl">💬</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>💬</span>
                 <a 
                   href="https://wa.me/905327180613" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="hover:text-white transition-colors"
                 >
-                  0 (532) 718 06 13 (WhatsApp)
+                  WhatsApp Destek
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="text-blue-400 text-xl">📧</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>📧</span>
                 <a href="mailto:info@elektrikteknik.com" className="hover:text-white transition-colors">
                   info@elektrikteknik.com
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="text-blue-400 text-xl">📍</span>
-                <span className="text-sm">A.yesevi Mh. Mekke Cd. No:9 Sultanbeyli İstanbul</span>
-              </li>
-            </ul>
-          </div>
+              </div>
+            </div>
 
-          {/* Çalışma Saatleri - Sağ */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Çalışma Saatleri</h3>
-            <div className="space-y-2 text-gray-400">
-              <div className="flex justify-between">
-                <span>Hafta İçi:</span>
-                <span className="text-white font-semibold">7/24</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Cumartesi:</span>
-                <span className="text-white font-semibold">7/24</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Pazar:</span>
-                <span className="text-white font-semibold">7/24</span>
-              </div>
-              <div className="mt-4 pt-4 border-t border-gray-800">
-                <div className="flex items-center gap-2 text-green-400">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                  </span>
-                  <span className="text-sm">Acil Durum: 7/24 Hizmet</span>
-                </div>
+            <div className="mt-6 pt-4 border-t border-gray-800">
+              <div className="flex items-center gap-2 text-green-400">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span className="text-sm font-medium">7/24 Acil Servis</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Alt Telif */}
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Elektrik Teknik. Tüm hakları saklıdır.</p>
+        <div className="border-t border-gray-800 pt-8 text-center">
+          <p className="text-gray-400">
+            &copy; {new Date().getFullYear()} Elektrik Teknik. Tüm hakları saklıdır.
+          </p>
+          <p className="text-xs text-gray-500 mt-2">
+            İstanbul'da 7/24 acil elektrikçi, elektrik tamir, bakım, tesisat, güneş enerji, 
+            güvenlik sistemleri ve elektrik ürünleri satışı.
+          </p>
         </div>
       </div>
     </footer>
   )
-}" " 
+}

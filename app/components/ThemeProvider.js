@@ -13,8 +13,7 @@ export default function ThemeProvider({ children }) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
-    // LocalStorage'dan tema tercihini oku
+    // Sayfa yüklendiğinde tema tercihini belirle
     const savedTheme = localStorage.getItem('darkMode')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     
@@ -26,12 +25,14 @@ export default function ThemeProvider({ children }) {
     } else {
       document.documentElement.classList.remove('dark')
     }
+    
+    setMounted(true)
   }, [])
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode
     setDarkMode(newDarkMode)
-    localStorage.setItem('darkMode', newDarkMode)
+    localStorage.setItem('darkMode', String(newDarkMode))
     
     if (newDarkMode) {
       document.documentElement.classList.add('dark')
@@ -40,9 +41,9 @@ export default function ThemeProvider({ children }) {
     }
   }
 
-  // Sayfa yüklenene kadar bekleyin (hydration hatasını önlemek için)
+  // Sayfa yüklenene kadar boş içerik göster (hydration hatasını önler)
   if (!mounted) {
-    return <>{children}</>
+    return null
   }
 
   return (

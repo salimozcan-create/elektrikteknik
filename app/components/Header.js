@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
@@ -8,7 +8,20 @@ import ThemeToggle from './ThemeToggle';
 const navigation = [
   { name: 'Anasayfa', href: '/' },
   { name: 'Elektrik Usta', href: '/elektrik-usta' },
-  { name: 'Elektrik Ürün', href: '/elektrik-urun' },
+  { 
+    name: 'Elektrik Ürün', 
+    href: '/elektrik-urun',
+    submenu: [
+      { name: 'Prizler', href: '/elektrik-urun/prizler' },
+      { name: 'Ampuller', href: '/elektrik-urun/ampuller' },
+      { name: 'Projektörler', href: '/elektrik-urun/projektorler' },
+      { name: 'Kaçak Akım Rölesi', href: '/elektrik-urun/kacak-akim-rolesi' },
+      { name: 'LED Paneller', href: '/elektrik-urun/led-paneller' },
+      { name: 'Avizeler', href: '/elektrik-urun/avizeler' },
+      { name: 'Şalter & Sigorta', href: '/elektrik-urun/salter-ve-sigortalar' },
+      { name: 'Aplik & Armatür', href: '/elektrik-urun/aplik-ve-armaturler' },
+    ]
+  },
   { name: 'Güneş Enerji', href: '/gunes-enerji' },
   { name: 'Güvenlik', href: '/guvenlik' },
   { name: 'Hakkımızda', href: '/hakkimizda' },
@@ -18,7 +31,10 @@ const navigation = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const [mobileExpanded, setMobileExpanded] = useState({});
   const pathname = usePathname();
+  const submenuTimeout = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +55,36 @@ export default function Header() {
     };
   }, [mobileMenuOpen]);
 
+  const handleMouseEnter = (name) => {
+    if (submenuTimeout.current) {
+      clearTimeout(submenuTimeout.current);
+      submenuTimeout.current = null;
+    }
+    setActiveSubmenu(name);
+  };
+
+  const handleMouseLeave = () => {
+    submenuTimeout.current = setTimeout(() => {
+      setActiveSubmenu(null);
+    }, 150);
+  };
+
+  const handleSubmenuClick = () => {
+    setActiveSubmenu(null);
+  };
+
+  const toggleMobileSubmenu = (name) => {
+    setMobileExpanded(prev => ({
+      ...prev,
+      [name]: !prev[name]
+    }));
+  };
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setMobileExpanded({});
+  }, [pathname]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -49,7 +95,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-3 sm:px-4">
         <div className="flex items-center justify-between">
-          {/* Logo - Tam görünümlü "Elektrik Teknik" */}
+          {/* Logo */}
           <Link href="/" className="flex items-center space-x-1 sm:space-x-2 shrink-0">
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-md">
               <span className="text-white font-bold text-base sm:text-xl">E</span>
@@ -61,21 +107,58 @@ export default function Header() {
           </Link>
 
           {/* Masaüstü Menüsü */}
-          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`${
-                  pathname === item.href
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                } px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap`}
+              <div 
+                key={item.name} 
+                className="relative"
+                onMouseEnter={() => item.submenu && handleMouseEnter(item.name)}
+                onMouseLeave={() => item.submenu && handleMouseLeave()}
               >
-                {item.name}
-              </Link>
+                <Link
+                  href={item.href}
+                  className={`${
+                    pathname === item.href || (item.submenu && pathname.startsWith(item.href))
+                      ? 'bg-blue-600 text-white shadow-md'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  } px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap flex items-center gap-1`}
+                  onClick={() => item.submenu && setActiveSubmenu(null)}
+                >
+                  {item.name}
+                  {item.submenu && (
+                    <svg 
+                      className={`w-3 h-3 transition-transform ${activeSubmenu === item.name ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  )}
+                </Link>
+                
+                {/* Alt Menü - Sadece Elektrik Ürün için */}
+                {item.submenu && activeSubmenu === item.name && (
+                  <div 
+                    className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 min-w-[220px] z-50"
+                    onMouseEnter={() => handleMouseEnter(item.name)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {item.submenu.map((subItem) => (
+                      <Link
+                        key={subItem.name}
+                        href={subItem.href}
+                        onClick={handleSubmenuClick}
+                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
-          </div>
+          </nav>
 
           {/* Sağ Taraftaki Butonlar */}
           <div className="flex items-center space-x-2 sm:space-x-3">
@@ -135,24 +218,71 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobil Menü (Açılır Kapanır) */}
+        {/* Mobil Menü */}
         {mobileMenuOpen && (
           <div className="lg:hidden fixed inset-x-0 top-[57px] bottom-0 bg-white dark:bg-gray-900 z-40 overflow-y-auto">
-            <div className="flex flex-col p-4 space-y-2">
+            <div className="flex flex-col p-4 space-y-1">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`${
-                    pathname === item.href
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  } px-4 py-3 rounded-xl text-base font-medium transition-colors text-center`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name} className="border-b border-gray-100 dark:border-gray-800 last:border-0">
+                  {item.submenu ? (
+                    <>
+                      <button
+                        onClick={() => toggleMobileSubmenu(item.name)}
+                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                          pathname.startsWith(item.href)
+                            ? 'bg-blue-600 text-white'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                        }`}
+                      >
+                        <span>{item.name}</span>
+                        <svg
+                          className={`w-5 h-5 transition-transform ${mobileExpanded[item.name] ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      
+                      {mobileExpanded[item.name] && (
+                        <div className="ml-4 mt-1 mb-2 space-y-1 border-l-2 border-blue-200 dark:border-blue-800 pl-4">
+                          <Link
+                            href={item.href}
+                            className="block px-4 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            Tümünü Gör ({item.name})
+                          </Link>
+                          {item.submenu.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              href={subItem.href}
+                              className="block px-4 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                        pathname === item.href
+                          ? 'bg-blue-600 text-white'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
               ))}
+              
               <div className="pt-4 mt-2 border-t border-gray-100 dark:border-gray-800">
                 <a
                   href="tel:+905327180613"
@@ -163,7 +293,6 @@ export default function Header() {
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       strokeLinecap="round"

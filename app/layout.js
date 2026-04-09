@@ -4,11 +4,13 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import WhatsApp from './components/Whatsapp'
 import Schema from './components/Schema'
+import ThemeProvider from './components/ThemeProvider'
+import Breadcrumb from './components/Breadcrumb'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  metadataBase: new URL('https://www.elektrikteknik.com'),
+  metadataBase: new URL('https://elektrikteknik.com'),
   title: {
     default: 'Elektrik Teknik | 7/24 Acil Elektrikçi ve Elektrik Tamir Hizmeti',
     template: '%s | Elektrik Teknik'
@@ -19,7 +21,7 @@ export const metadata = {
   openGraph: {
     title: 'Elektrik Teknik | Profesyonel Elektrik ve Güvenlik Sistemleri',
     description: '7/24 elektrik tamir, güneş enerji ve güvenlik kamera sistemleri',
-    url: 'https://www.elektrikteknik.com',
+    url: 'https://elektrikteknik.com',
     siteName: 'Elektrik Teknik',
     locale: 'tr_TR',
     type: 'website',
@@ -45,7 +47,6 @@ export const metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  themeColor: '#2563eb',
 }
 
 export default function RootLayout({ children }) {
@@ -56,13 +57,16 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300`}>
-        <Header />
-        <main className="pt-20">
-          {children}
-        </main>
-        <Footer />
-        <WhatsApp />
-        <Schema />
+        <ThemeProvider>
+          <Header />
+          <Breadcrumb />
+          <main className="pt-0">
+            {children}
+          </main>
+          <Footer />
+          <WhatsApp />
+          <Schema />
+        </ThemeProvider>
       </body>
     </html>
   )

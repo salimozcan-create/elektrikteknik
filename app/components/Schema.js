@@ -1,121 +1,77 @@
 export default function Schema() {
-  const schema = {
+  const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "Electrician"],
-        "@id": "https://elektrikteknik.com/#business",
-        "name": "Elektrik Teknik",
-        "url": "https://elektrikteknik.com",
-        "telephone": "+905327180613",
-        "image": "https://elektrikteknik.com/elektrikci-istanbul.jpg",
-        "description": "İstanbul Anadolu Yakası'nda 7/24 acil elektrikçi hizmeti. Sultanbeyli merkezli elektrik arıza, sigorta değişimi ve tesisat hizmetleri.",
-        
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "A.yesevi Mh. Mekke Cd. No:9",
-          "addressLocality": "Sultanbeyli",
-          "addressRegion": "İstanbul",
-          "addressCountry": "TR"
-        },
-
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 40.9786,
-          "longitude": 29.2708
-        },
-
-        "areaServed": [
-          { "@type": "City", "name": "Sultanbeyli" },
-          { "@type": "City", "name": "Pendik" },
-          { "@type": "City", "name": "Kartal" },
-          { "@type": "City", "name": "Maltepe" },
-          { "@type": "City", "name": "Kadıköy" },
-          { "@type": "City", "name": "Üsküdar" },
-          { "@type": "City", "name": "Ataşehir" },
-          { "@type": "City", "name": "Sancaktepe" },
-          { "@type": "City", "name": "Çekmeköy" },
-          { "@type": "City", "name": "Tuzla" },
-          { "@type": "City", "name": "Beykoz" },
-          { "@type": "City", "name": "Ümraniye" },
-          { "@type": "City", "name": "Adalar" }
-        ],
-
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
-          ],
-          "opens": "00:00",
-          "closes": "23:59"
-        },
-
-        "priceRange": "₺₺",
-
-        "sameAs": [
-          "https://www.instagram.com/elektrikteknik",
-          "https://www.facebook.com/elektrikteknik",
-          "https://wa.me/905327180613"
-        ]
-      },
-
-      {
-        "@type": "Service",
-        "name": "Acil Elektrikçi Anadolu Yakası",
-        "description": "Sultanbeyli merkezli Anadolu Yakası genelinde 7/24 acil elektrik arıza ve tamir hizmeti",
-        "provider": {
-          "@id": "https://elektrikteknik.com/#business"
-        },
-        "areaServed": "İstanbul Anadolu Yakası"
-      },
-
-      {
-        "@type": "Service",
-        "name": "Sultanbeyli Elektrikçi",
-        "description": "Sultanbeyli ilçesinde hızlı elektrik arıza ve tamir hizmeti",
-        "provider": {
-          "@id": "https://elektrikteknik.com/#business"
-        }
-      },
-
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Anadolu Yakası'nda ne kadar sürede geliyorsunuz?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sultanbeyli merkezli olduğumuz için Pendik, Kartal ve Sancaktepe bölgelerine çok hızlı, diğer ilçelere ortalama 30-45 dakika içinde ulaşım sağlıyoruz."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Hangi ilçelere hizmet veriyorsunuz?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "İstanbul Anadolu Yakası'nda Sultanbeyli, Pendik, Kartal, Maltepe, Kadıköy, Üsküdar, Ataşehir, Sancaktepe, Çekmeköy, Tuzla ve çevresine hizmet veriyoruz."
-            }
-          }
-        ]
-      },
-
-      {
-        "@type": "WebSite",
-        "@id": "https://elektrikteknik.com/#website",
-        "url": "https://elektrikteknik.com",
-        "name": "Elektrik Teknik",
-        "publisher": {
-          "@id": "https://elektrikteknik.com/#business"
-        }
-      }
+    "@type": "ElectricalContractor",
+    "name": "Elektrik Teknik",
+    "alternateName": "Elektrik Teknik Elektrikçi Hizmetleri",
+    "description": "İstanbul'da 7/24 acil elektrik tamir, arıza giderme, sigorta değişimi, priz montajı, elektrik tesisatı ve güneş enerji sistemleri hizmetleri.",
+    "url": "https://elektrikteknik.com",
+    "telephone": "+905327180613",
+    "email": "info@elektrikteknik.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "A.yesevi Mh. Mekke Cd. No:9",
+      "addressLocality": "Sultanbeyli",
+      "addressRegion": "İstanbul",
+      "addressCountry": "TR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "40.9786",
+      "longitude": "29.2708"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "İstanbul"
+    },
+    "priceRange": "₺₺",
+    "openingHours": "Mo-Su 00:00-23:59",
+    "sameAs": [
+      "https://www.instagram.com/elektrikteknik",
+      "https://www.facebook.com/elektrikteknik",
+      "https://wa.me/905327180613"
     ]
   }
 
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Elektrik Hizmetlerimiz",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "Acil Elektrik Arıza", "description": "7/24 acil elektrik arıza giderme ve tamir hizmeti" } },
+      { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "Sigorta Değişimi", "description": "Otomat sigorta ve kaçak akım rölesi değişimi" } },
+      { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "Priz ve Anahtar Değişimi", "description": "Priz, anahtar ve tesisat elemanlarının değişimi" } },
+      { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "Elektrik Tesisatı", "description": "Bina, ev ve işyeri elektrik tesisatı yenileme" } },
+      { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "Elektrik Ürünleri", "description": "Kaliteli elektrik ürünleri ve malzemeleri" } },
+      { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Güneş Enerji Sistemleri", "description": "Güneş paneli kurulumu ve enerji sistemleri" } },
+      { "@type": "ListItem", "position": 7, "item": { "@type": "Service", "name": "Güvenlik Kamera Sistemleri", "description": "CCTV, alarm ve akıllı ev sistemleri kurulumu" } }
+    ]
+  }
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Acil elektrik arızası için ne kadar sürede geliyorsunuz?", "acceptedAnswer": { "@type": "Answer", "text": "İstanbul genelinde ortalama 30-45 dakika içinde müdahale ediyoruz. Acil durumlarda daha da hızlı yönlendirme yapıyoruz." } },
+      { "@type": "Question", "name": "Elektrik tamir işleriniz garantili mi?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, tüm elektrik tamir ve bakım işlerimiz 1 yıl garantilidir. Malzeme garantileri markalara göre değişmektedir." } },
+      { "@type": "Question", "name": "7/24 hizmet veriyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, haftanın 7 günü 24 saat acil elektrik tamir ve arıza hizmeti veriyoruz." } },
+      { "@type": "Question", "name": "Hangi bölgelere hizmet veriyorsunuz?", "acceptedAnswer": { "@type": "Answer", "text": "İstanbul'un tüm ilçelerine hizmet vermekteyiz. Özellikle Sultanbeyli, Kadıköy, Üsküdar, Beşiktaş, Şişli, Fatih ve çevresinde daha hızlı hizmet sağlıyoruz." } }
+    ]
+  }
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Elektrik Teknik",
+    "url": "https://elektrikteknik.com"
+  }
+
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+    </>
   )
 }

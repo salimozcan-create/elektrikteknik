@@ -1,10 +1,10 @@
 export default function Schema() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "Electrician",
+    "@type": "ElectricalContractor",
     "name": "Elektrik Teknik",
-    "alternateName": ["Elektrik Teknik Elektrikçi", "7/24 Acil Elektrikçi", "724 Elektrikçi"],
-    "description": "İstanbul'da 7/24 acil elektrikçi, elektrik arıza, tamir, bakım ve tesisat hizmetleri. Sigorta değişimi, priz montajı, kaçak akım rölesi.",
+    "alternateName": "Elektrik Teknik Elektrikçi Hizmetleri",
+    "description": "İstanbul'da 7/24 acil elektrik tamir, arıza giderme, sigorta değişimi, priz montajı, elektrik tesisatı ve güneş enerji sistemleri hizmetleri.",
     "url": "https://elektrikteknik.com",
     "telephone": "+905327180613",
     "email": "info@elektrikteknik.com",
@@ -13,7 +13,6 @@ export default function Schema() {
       "streetAddress": "A.yesevi Mh. Mekke Cd. No:9",
       "addressLocality": "Sultanbeyli",
       "addressRegion": "İstanbul",
-      "postalCode": "34935",
       "addressCountry": "TR"
     },
     "geo": {
@@ -22,24 +21,14 @@ export default function Schema() {
       "longitude": "29.2708"
     },
     "areaServed": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": "40.9786",
-        "longitude": "29.2708"
-      },
-      "geoRadius": "50000"
+      "@type": "City",
+      "name": "İstanbul"
     },
     "priceRange": "₺₺",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "00:00",
-        "closes": "23:59"
-      }
-    ],
+    "openingHours": "Mo-Su 00:00-23:59",
     "sameAs": [
+      "https://www.instagram.com/elektrikteknik",
+      "https://www.facebook.com/elektrikteknik",
       "https://wa.me/905327180613"
     ]
   }
@@ -59,6 +48,17 @@ export default function Schema() {
     ]
   }
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Acil elektrik arızası için ne kadar sürede geliyorsunuz?", "acceptedAnswer": { "@type": "Answer", "text": "İstanbul genelinde ortalama 30-45 dakika içinde müdahale ediyoruz. Acil durumlarda daha da hızlı yönlendirme yapıyoruz." } },
+      { "@type": "Question", "name": "Elektrik tamir işleriniz garantili mi?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, tüm elektrik tamir ve bakım işlerimiz 1 yıl garantilidir. Malzeme garantileri markalara göre değişmektedir." } },
+      { "@type": "Question", "name": "7/24 hizmet veriyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, haftanın 7 günü 24 saat acil elektrik tamir ve arıza hizmeti veriyoruz." } },
+      { "@type": "Question", "name": "Hangi bölgelere hizmet veriyorsunuz?", "acceptedAnswer": { "@type": "Answer", "text": "İstanbul'un tüm ilçelerine hizmet vermekteyiz. Özellikle Sultanbeyli, Kadıköy, Üsküdar, Beşiktaş, Şişli, Fatih ve çevresinde daha hızlı hizmet sağlıyoruz." } }
+    ]
+  }
+
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -70,6 +70,7 @@ export default function Schema() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
     </>
   )

@@ -27,8 +27,6 @@ export default function Schema() {
     "priceRange": "₺₺",
     "openingHours": "Mo-Su 00:00-23:59",
     "sameAs": [
-      "https://www.instagram.com/elektrikteknik",
-      "https://www.facebook.com/elektrikteknik",
       "https://wa.me/905327180613"
     ]
   }
@@ -48,17 +46,6 @@ export default function Schema() {
     ]
   }
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "Acil elektrik arızası için ne kadar sürede geliyorsunuz?", "acceptedAnswer": { "@type": "Answer", "text": "İstanbul genelinde ortalama 30-45 dakika içinde müdahale ediyoruz. Acil durumlarda daha da hızlı yönlendirme yapıyoruz." } },
-      { "@type": "Question", "name": "Elektrik tamir işleriniz garantili mi?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, tüm elektrik tamir ve bakım işlerimiz 1 yıl garantilidir. Malzeme garantileri markalara göre değişmektedir." } },
-      { "@type": "Question", "name": "7/24 hizmet veriyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, haftanın 7 günü 24 saat acil elektrik tamir ve arıza hizmeti veriyoruz." } },
-      { "@type": "Question", "name": "Hangi bölgelere hizmet veriyorsunuz?", "acceptedAnswer": { "@type": "Answer", "text": "İstanbul'un tüm ilçelerine hizmet vermekteyiz. Özellikle Sultanbeyli, Kadıköy, Üsküdar, Beşiktaş, Şişli, Fatih ve çevresinde daha hızlı hizmet sağlıyoruz." } }
-    ]
-  }
-
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -70,7 +57,6 @@ export default function Schema() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
     </>
   )
